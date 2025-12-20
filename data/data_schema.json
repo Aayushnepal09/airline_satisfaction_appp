@@ -1,0 +1,156 @@
+{
+  "numerical": {
+    "age": {
+      "min": 7.0,
+      "max": 85.0,
+      "mean": 39.379706267323684,
+      "median": 40.0
+    },
+    "flight_distance": {
+      "min": 31.0,
+      "max": 4983.0,
+      "mean": 1189.4483754234677,
+      "median": 843.0
+    },
+    "inflight_wifi_service": {
+      "min": 0.0,
+      "max": 5.0,
+      "mean": 2.72968316907915,
+      "median": 3.0
+    },
+    "departure_arrival_time_convenient": {
+      "min": 0.0,
+      "max": 5.0,
+      "mean": 3.06029604250077,
+      "median": 3.0
+    },
+    "ease_of_online_booking": {
+      "min": 0.0,
+      "max": 5.0,
+      "mean": 2.7569006005543577,
+      "median": 3.0
+    },
+    "gate_location": {
+      "min": 0.0,
+      "max": 5.0,
+      "mean": 2.9768825069294733,
+      "median": 3.0
+    },
+    "food_and_drink": {
+      "min": 0.0,
+      "max": 5.0,
+      "mean": 3.2021288882044963,
+      "median": 3.0
+    },
+    "online_boarding": {
+      "min": 0.0,
+      "max": 5.0,
+      "mean": 3.250375346473668,
+      "median": 3.0
+    },
+    "seat_comfort": {
+      "min": 0.0,
+      "max": 5.0,
+      "mean": 3.4393959809054513,
+      "median": 4.0
+    },
+    "inflight_entertainment": {
+      "min": 0.0,
+      "max": 5.0,
+      "mean": 3.358157530027718,
+      "median": 4.0
+    },
+    "on_board_service": {
+      "min": 0.0,
+      "max": 5.0,
+      "mean": 3.382362565445026,
+      "median": 4.0
+    },
+    "leg_room_service": {
+      "min": 0.0,
+      "max": 5.0,
+      "mean": 3.3510548198336925,
+      "median": 4.0
+    },
+    "baggage_handling": {
+      "min": 1.0,
+      "max": 5.0,
+      "mean": 3.6318332306744687,
+      "median": 4.0
+    },
+    "checkin_service": {
+      "min": 0.0,
+      "max": 5.0,
+      "mean": 3.304290498922082,
+      "median": 3.0
+    },
+    "inflight_service": {
+      "min": 0.0,
+      "max": 5.0,
+      "mean": 3.6404277024946103,
+      "median": 4.0
+    },
+    "cleanliness": {
+      "min": 0.0,
+      "max": 5.0,
+      "mean": 3.2863508623344626,
+      "median": 3.0
+    },
+    "departure_delay_minutes": {
+      "min": 0.0,
+      "max": 1592.0,
+      "mean": 14.815618263012011,
+      "median": 0.0
+    },
+    "arrival_delay_minutes": {
+      "min": 0.0,
+      "max": 1584.0,
+      "mean": 15.133392362180475,
+      "median": 0.0
+    }
+  },
+  "categorical": {
+    "gender": {
+      "unique_values": [
+        "Female",
+        "Male"
+      ],
+      "value_counts": {
+        "Female": 52727,
+        "Male": 51177
+      }
+    },
+    "customer_type": {
+      "unique_values": [
+        "Loyal Customer",
+        "disloyal Customer"
+      ],
+      "value_counts": {
+        "Loyal Customer": 84923,
+        "disloyal Customer": 18981
+      }
+    },
+    "type_of_travel": {
+      "unique_values": [
+        "Business travel",
+        "Personal Travel"
+      ],
+      "value_counts": {
+        "Business travel": 71655,
+        "Personal Travel": 32249
+      }
+    },
+    "travel_class": {
+      "unique_values": [
+        "Business",
+        "Eco",
+        "Eco Plus"
+      ],
+      "value_counts": {
+        "Business": 49665,
+        "Eco": 46745,
+        "Eco Plus": 7494
+      }
+    }
+  }
+}
