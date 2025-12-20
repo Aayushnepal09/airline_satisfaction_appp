@@ -21,3 +21,8 @@ data/*.csv
 # OS
 
 Thumbs.db
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.enc
