@@ -1,2 +1,23 @@
 .env
 .DS_Store
+# Python / env
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Data / models (too big)
+models/
+data/*.db
+data/*.csv
+*.pkl
+
+# Notebooks checkpoints
+.ipynb_checkpoints/
+
+# OS
+
+Thumbs.db
