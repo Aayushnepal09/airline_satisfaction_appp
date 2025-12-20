@@ -1,0 +1,12 @@
+pandas
+numpy
+scikit-learn
+joblib
+matplotlib
+jupyter
+xgboost
+lightgbm
+ydata-profiling
+dagshub
+mlflow
+optuna

@@ -1,0 +1,45 @@
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: airline-api
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./models:/app/models:ro
+    env_file:
+      - .env
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - airline-network
+    restart: unless-stopped
+
+  streamlit:
+    build:
+      context: ./streamlit
+      dockerfile: Dockerfile
+    container_name: airline-streamlit
+    ports:
+      - "8501:8501"
+    volumes:
+      - ./data:/app/data:ro
+    env_file:
+      - .env
+    environment:
+      # internal Docker URL for service-to-service communication
+      - API_URL=http://api:8000
+      # human-friendly URL shown in the UI
+      - PUBLIC_API_URL=http://localhost:8000
+      - PYTHONUNBUFFERED=1
+    networks:
+      - airline-network
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
+networks:
+  airline-network:
+    driver: bridge
