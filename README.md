@@ -73,6 +73,7 @@ The same setup can run locally or on a cloud VM (e.g., DigitalOcean).
 ---
 
 ## Demo
+This wont work now as i've removed it from digitalocean if you want you can clone the project and run it locally 
 - Streamlit UI: `http://<host>:8501`
 - FastAPI docs: `http://<host>:8000/docs`
 
