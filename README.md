@@ -1,90 +1,89 @@
-# Airline Passenger Satisfaction App (Fall 2025)
+# ✈️ Airline Passenger Satisfaction (Classification) — FastAPI + Streamlit + Docker
 
-This project is based on the starter repo **mkzia/housing_app_fall25**, updated for a **binary classification** problem using the Airline Passenger Satisfaction dataset.
+## Overview
+This project is an end-to-end **machine learning classification system** that predicts whether an airline passenger is **Satisfied** or **Neutral/Dissatisfied** based on service ratings, travel details, and passenger information.
 
-## What’s inside
-- **SQLite 3NF database**: `data/airline.db`
-- **Notebooks** (in `notebooks/`)
-  - `01_create_database.ipynb` — build the 3NF DB (passenger/trip/service/delay/satisfaction)
-  - `02_train_model_without_optuna.ipynb` — SQL JOIN → EDA → train/test split → baseline model → save `models/global_best_model.pkl`
-  - `03_train_models_with_optuna.ipynb` — required experiments (with/without PCA, with/without tuning) → save `models/global_best_model_optuna.pkl`
-  - `04_generate_streamlit_options.ipynb` — create `data/data_schema.json` for Streamlit UI
-- **FastAPI** service (`api/`) that loads `models/global_best_model_optuna.pkl` (configurable via `.env`)
-- **Streamlit** UI (`streamlit/`) that calls the API
-- **Docker Compose** for local + cloud deployment
-
-> **Note**: Model files (`.pkl`) and data files (`.csv`, `.db`) are not included in the GitHub repository due to size limits. They must be generated locally by running the notebooks or provided separately for the application to function.
+It includes:
+- A complete ML pipeline (data → preprocessing → model → evaluation)
+- A **FastAPI** backend for inference (`/predict`)
+- A **Streamlit** frontend for user-friendly predictions
+- **Docker + docker-compose** for reproducible deployment
+- Experiment tracking using **MLflow on DagsHub**
 
 ---
 
-## Local Python setup (no Docker)
-
-Create and activate a virtual environment, then install dependencies:
-
-```bash
-python -m venv .venv
-# Windows:
-.venv\Scripts\activate
-# macOS/Linux:
-# source .venv/bin/activate
-
-pip install -r api/requirements.txt -r streamlit/requirements.txt
-pip install -r requirements.notebooks.txt
-```
-
-Run notebooks in order (from the repo root):
-
-1. `notebooks/01_create_database.ipynb`
-2. `notebooks/02_train_model_without_optuna.ipynb`
-3. `notebooks/03_train_models_with_optuna.ipynb`
-4. `notebooks/04_generate_streamlit_options.ipynb`
-
-> Note: the notebooks use robust paths, so they work whether you run them from the repo root or from inside `notebooks/`.
+## What the Project Does
+Users enter passenger details (age, flight distance, delays) and service ratings (1–5 scale such as cleanliness, seat comfort, etc.).  
+The system returns:
+- A simple **Yes/No style output** (Satisfied or Not Satisfied)
+- Optional “Show Details” section for input + raw JSON (useful for grading/demo)
 
 ---
 
-## Quick start with Docker (recommended for grading)
-
-### 1) Install Docker Desktop
-On Windows, install Docker Desktop and ensure:
-- Docker Desktop is running
-- **WSL 2 backend** is enabled (Settings → General)
-- Your distro is enabled (Settings → Resources → WSL Integration)
-
-### 2) Run from repo root
-
-```bash
-docker compose up -d --build
-```
-
-### 3) Open
-- Streamlit UI: http://localhost:8501
-- API health: http://localhost:8000/health
-- API docs: http://localhost:8000/docs
-
-Stop:
-
-```bash
-docker compose down
-```
+## Tech Stack
+- **Python** (data + modeling)
+- **scikit-learn** (pipelines, preprocessing, classification models)
+- **FastAPI** (model inference API)
+- **Streamlit** (frontend UI)
+- **SQLite** (normalized database used as a source for Pandas DataFrames)
+- **Docker + Docker Compose** (deployment & orchestration)
+- **DagsHub + MLflow** (experiment logging & tracking)
 
 ---
 
-## Environment variables
-See `.env.example`. For local docker-compose, copy:
-
-```bash
-cp .env.example .env
-```
-
-The API reads:
-- `MODEL_PATH` (default: `/app/models/global_best_model_optuna.pkl`)
+## Architecture (High Level)
+1. **Database Layer (SQLite):** stores the dataset in a normalized structure  
+2. **Training Layer:** builds preprocessing + model pipelines and evaluates performance  
+3. **Experiment Tracking:** logs runs + F1-scores to MLflow (DagsHub)  
+4. **Inference API (FastAPI):** loads the saved best model and serves predictions  
+5. **Frontend (Streamlit):** collects user inputs and calls the FastAPI endpoint
 
 ---
 
-## Sanity check
-You can quickly verify saved models:
+## Model & Experiments
+The project runs multiple experiments using different:
+- classification algorithms
+- PCA usage (with/without)
+- hyperparameter tuning (with/without Optuna)
 
-```bash
-python test_inference.py
-```
+Each experiment records **F1-score** and saves:
+- the trained model artifact
+- metrics JSON
+- run metadata in MLflow on DagsHub
+
+---
+
+## Deployment
+The system is containerized using Docker and orchestrated using **docker-compose**:
+- `api` service → FastAPI backend on port **8000**
+- `streamlit` service → UI frontend on port **8501**
+
+The same setup can run locally or on a cloud VM (e.g., DigitalOcean).
+
+---
+
+## Repository Structure
+- `api/` → FastAPI inference service  
+- `streamlit/` → Streamlit UI  
+- `models/` → saved models + metrics artifacts  
+- `data/` → dataset + schema + sqlite database  
+- `notebooks/` → database creation, training, experiment scripts  
+- `docker-compose.yml` → orchestrates API + frontend
+
+---
+
+## Demo
+- Streamlit UI: `http://<host>:8501`
+- FastAPI docs: `http://<host>:8000/docs`
+
+---
+
+## Notes
+This project is designed to demonstrate a complete ML system:
+- reliable training pipeline
+- experiment tracking
+- production-style inference API
+- user-facing frontend
+- reproducible deployment
+
+---
