@@ -61,6 +61,12 @@ The system is containerized using Docker and orchestrated using **docker-compose
 The same setup can run locally or on a cloud VM (e.g., DigitalOcean).
 
 ---
+## Experiment Tracking (DagsHub)
+All experiment runs and metrics are tracked here:
+
+- **DagsHub Repo:** https://dagshub.com/Aayushnepal09/Airline_Passenger_Satisfaction/experiments
+
+---
 
 ## Repository Structure
 - `api/` → FastAPI inference service  
