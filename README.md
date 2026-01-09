@@ -31,7 +31,7 @@ The system returns:
 
 ---
 
-## Architecture (High Level)
+## Architecture 
 1. **Database Layer (SQLite):** stores the dataset in a normalized structure  
 2. **Training Layer:** builds preprocessing + model pipelines and evaluates performance  
 3. **Experiment Tracking:** logs runs + F1-scores to MLflow (DagsHub)  
